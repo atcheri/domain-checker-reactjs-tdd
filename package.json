@@ -8,8 +8,9 @@
     "build": "tsc && vite build",
     "cy:open": "cypress open",
     "test": "vitest watch",
-    "test-e2e": "cypress open --e2e --browser chrome",
+    "test-e2e-chrome": "cypress open --e2e --browser chrome",
     "test-e2e-ci": "cypress run --browser chrome",
+    "test-e2e-firefox": "cypress open --e2e --browser firefox",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
