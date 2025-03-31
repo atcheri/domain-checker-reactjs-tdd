@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { DomainAvailabilityChecker } from './DomainAvailabilityChecker';
@@ -10,6 +10,9 @@ describe('DomainAvailabilityChecker page', () => {
     async (domain) => {
       // arrange
       render(<DomainAvailabilityChecker />);
+      globalThis.fetch = vi.fn().mockResolvedValueOnce({
+        json: () => Promise.resolve(),
+      });
 
       // act
       const inputField = screen.getByRole('textbox');
@@ -19,6 +22,7 @@ describe('DomainAvailabilityChecker page', () => {
 
       // assert
       expect(screen.getByText(`The searched domain is: ${domain}`)).toBeInTheDocument();
+      expect(global.fetch).toBeCalledWith(expect.stringContaining(`/check?domain=${domain}`));
     },
   );
 });

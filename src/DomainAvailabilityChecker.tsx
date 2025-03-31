@@ -21,6 +21,7 @@ export const DomainAvailabilityChecker = () => {
   };
 
   const handleDomainCheck = async () => {
+    fetch(`http://localhost:9000/check?domain=${domain}`);
     // const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
     // if (domainResponse.ok) {
     //   const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
