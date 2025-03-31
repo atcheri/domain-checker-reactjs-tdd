@@ -18,4 +18,18 @@ describe('DomainAvailabilityChecker page', () => {
     // assert
     expect(screen.getByText('The searched domain is: domain.com')).toBeInTheDocument();
   });
+
+  it.only('displays another domain when specified by the user', async () => {
+    // arrange
+    render(<DomainAvailabilityChecker />);
+
+    // act
+    const inputField = screen.getByRole('textbox');
+    await userEvent.type(inputField, 'ryouiki.com');
+    const button = screen.getByRole('button');
+    await userEvent.click(button);
+
+    // assert
+    expect(screen.getByText('The searched domain is: ryouiki.com')).toBeInTheDocument();
+  });
 });
