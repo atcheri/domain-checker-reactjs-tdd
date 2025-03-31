@@ -21,13 +21,15 @@ export const DomainAvailabilityChecker = () => {
   };
 
   const handleDomainCheck = async () => {
-    fetch(`http://localhost:9000/check?domain=${domain}`);
-    // const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
-    // if (domainResponse.ok) {
-    //   const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
-    //   const checkResults = processDomainCheckResponse(domainCheckResponse);
-    //   setCheckResult(checkResults);
-    // }
+    const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
+    if (!domainResponse.ok) {
+      return;
+    }
+
+    const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
+    const checkResults = processDomainCheckResponse(domainCheckResponse);
+    console.log('checkResults:', checkResults);
+    setCheckResult(checkResults);
   };
 
   return (
@@ -49,12 +51,10 @@ export const DomainAvailabilityChecker = () => {
       </div>
       <div data-testid='analyses-result' id='analyses-result' className='results-list'>
         {checkResult ? (
-          <ul>
-            {/* {checkResult?.map((item, index) => ( */}
-            <li /*</>key={index}*/>The searched domain is: {domain}</li>
-            <li>Premium domain</li>
-            {/* ))} */}
-          </ul>
+          <>
+            The searched domain is:{' '}
+            <ul>{checkResult?.map((item, index) => <li key={index}>{item}</li>)}</ul>
+          </>
         ) : (
           <p>No results available</p>
         )}

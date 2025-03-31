@@ -5,7 +5,7 @@ export const processDomainCheckResponse = (response: DomainCheckResponse): strin
     return ['This domain name is not available'];
   }
 
-  let checkResults = [];
+  const checkResults = [];
   checkResults.push(`The searched domain is: ${response.domain}`);
   if (response.isPremium) {
     checkResults.push('Premium domain');
