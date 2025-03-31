@@ -13,7 +13,7 @@ export type DomainCheckResponse = {
 };
 
 export const DomainAvailabilityChecker = () => {
-  const [domain, setDomain] = useState<string>();
+  const [domain, setDomain] = useState<string>('');
   const [checkResult, setCheckResult] = useState<string[]>();
 
   const handleDomainNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
