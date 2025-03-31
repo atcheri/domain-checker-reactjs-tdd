@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-import { DomainAvailabilityChecker } from '../src/DomainAvailabilityCheckerPage';
+import { DomainAvailabilityChecker } from '../src/DomainAvailabilityChecker';
 
 describe('DomainAvailabilityChecker page', () => {
   it('should display base domain check when domain specified by user', async () => {

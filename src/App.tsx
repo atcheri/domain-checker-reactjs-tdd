@@ -1,10 +1,9 @@
 import './App.css';
-import { DomainAvailabilityChecker } from './DomainAvailabilityCheckerPage';
+
+import { DomainAvailabilityChecker } from './DomainAvailabilityChecker';
 
 function App() {
-  return (
-      <DomainAvailabilityChecker />
-  );
+  return <DomainAvailabilityChecker />;
 }
 
 export default App;

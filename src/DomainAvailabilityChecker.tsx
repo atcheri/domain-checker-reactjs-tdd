@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
 import './styles.css';
+
+import React, { useState } from 'react';
+
 import TrendyLogo from './assets/trendy-logo.png';
 import { processDomainCheckResponse } from './DomainCheckResponseProcessor';
 
@@ -19,11 +21,11 @@ export const DomainAvailabilityChecker = () => {
   };
 
   const handleDomainCheck = async () => {
-    let domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
+    const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
 
     if (domainResponse.ok) {
-      let domainCheckResponse: DomainCheckResponse = await domainResponse.json();
-      let checkResults = processDomainCheckResponse(domainCheckResponse);
+      const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
+      const checkResults = processDomainCheckResponse(domainCheckResponse);
       setCheckResult(checkResults);
     }
   };

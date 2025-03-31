@@ -1,4 +1,4 @@
-import { DomainCheckResponse } from './DomainAvailabilityCheckerPage';
+import { DomainCheckResponse } from './DomainAvailabilityChecker';
 
 export const processDomainCheckResponse = (response: DomainCheckResponse): string[] => {
   if (!response.isAvailable) {
