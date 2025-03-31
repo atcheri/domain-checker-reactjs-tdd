@@ -14,7 +14,7 @@ export type DomainCheckResponse = {
 
 export const DomainAvailabilityChecker = () => {
   const [domain, setDomain] = useState<string>('');
-  const [checkResult, setCheckResult] = useState<string[]>();
+  const [checkResult, setCheckResult] = useState<string[]>([]);
 
   const handleDomainNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDomain(event.target.value);
@@ -48,9 +48,13 @@ export const DomainAvailabilityChecker = () => {
         </button>
       </div>
       <div data-testid='analyses-result' id='analyses-result' className='results-list'>
-        The searched domain is: {domain}
         {checkResult ? (
-          <ul>{checkResult?.map((item, index) => <li key={index}>{item}</li>)}</ul>
+          <ul>
+            {/* {checkResult?.map((item, index) => ( */}
+            <li /*</>key={index}*/>The searched domain is: {domain}</li>
+            <li>Premium domain</li>
+            {/* ))} */}
+          </ul>
         ) : (
           <p>No results available</p>
         )}

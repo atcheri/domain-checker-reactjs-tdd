@@ -10,8 +10,12 @@ describe('DomainAvailabilityChecker page', () => {
     async (domain) => {
       // arrange
       render(<DomainAvailabilityChecker />);
+      const mockApiResponse = {
+        domain,
+        isPremium: true,
+      };
       globalThis.fetch = vi.fn().mockResolvedValueOnce({
-        json: () => Promise.resolve(),
+        json: () => Promise.resolve(mockApiResponse),
       });
 
       // act
@@ -22,6 +26,7 @@ describe('DomainAvailabilityChecker page', () => {
 
       // assert
       expect(screen.getByText(`The searched domain is: ${domain}`)).toBeInTheDocument();
+      expect(screen.getByText('Premium domain')).toBeInTheDocument();
       expect(global.fetch).toBeCalledWith(expect.stringContaining(`/check?domain=${domain}`));
     },
   );
