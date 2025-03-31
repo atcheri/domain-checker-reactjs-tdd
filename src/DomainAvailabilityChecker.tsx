@@ -21,13 +21,12 @@ export const DomainAvailabilityChecker = () => {
   };
 
   const handleDomainCheck = async () => {
-    const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
-
-    if (domainResponse.ok) {
-      const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
-      const checkResults = processDomainCheckResponse(domainCheckResponse);
-      setCheckResult(checkResults);
-    }
+    // const domainResponse = await fetch(`http://localhost:9000/check?domain=${domain}`);
+    // if (domainResponse.ok) {
+    //   const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
+    //   const checkResults = processDomainCheckResponse(domainCheckResponse);
+    //   setCheckResult(checkResults);
+    // }
   };
 
   return (
@@ -48,7 +47,7 @@ export const DomainAvailabilityChecker = () => {
         </button>
       </div>
       <div data-testid='analyses-result' id='analyses-result' className='results-list'>
-        The searched domain is: domain.com
+        The searched domain is: {domain}
         {checkResult ? (
           <ul>{checkResult?.map((item, index) => <li key={index}>{item}</li>)}</ul>
         ) : (
