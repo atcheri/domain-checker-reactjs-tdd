@@ -104,4 +104,24 @@ describe('DomainAvailabilityChecker page', () => {
       }
     });
   });
+
+  describe('given a failing API call', () => {
+    it('show a No results available message', async () => {
+      // arrange
+      render(<DomainAvailabilityChecker />);
+      globalThis.fetch = vi.fn().mockResolvedValueOnce({
+        json: () => Promise.reject(),
+        ok: false,
+      });
+
+      // act
+      const inputField = screen.getByRole('textbox');
+      await userEvent.type(inputField, 'not.available');
+      const button = screen.getByRole('button');
+      await userEvent.click(button);
+
+      // assert
+      expect(screen.getByText('No results available')).toBeInTheDocument();
+    });
+  });
 });
