@@ -51,10 +51,7 @@ export const DomainAvailabilityChecker = () => {
       </div>
       <div data-testid='analyses-result' id='analyses-result' className='results-list'>
         {checkResult ? (
-          <>
-            The searched domain is:{' '}
-            <ul>{checkResult?.map((item, index) => <li key={index}>{item}</li>)}</ul>
-          </>
+          <ul>{checkResult?.map((item, index) => <li key={index}>{item}</li>)}</ul>
         ) : (
           <p>No results available</p>
         )}
