@@ -63,4 +63,45 @@ describe('DomainAvailabilityChecker page', () => {
       expect(screen.getByText('This domain name is not available')).toBeInTheDocument();
     });
   });
+
+  describe('given discount code', () => {
+    it.each([
+      {
+        message: '20% OFF',
+        code: 'DISCOUNT_20',
+      },
+      {
+        message: '50% OFF',
+        code: 'DISCOUNT_50',
+      },
+      {
+        message: '90% RENEWAL DISCOUNT',
+        code: 'RENEWAL_DISCOUNT_90',
+      },
+    ])('displays %s when the discount code is %s', async ({ code, message }) => {
+      {
+        // arrange
+        render(<DomainAvailabilityChecker />);
+        const mockApiResponse: DomainCheckResponse = {
+          domain: 'some.domain',
+          isPremium: false,
+          isAvailable: true,
+          discountCode: code,
+        };
+        globalThis.fetch = vi.fn().mockResolvedValueOnce({
+          json: () => Promise.resolve(mockApiResponse),
+          ok: true,
+        });
+
+        // act
+        const inputField = screen.getByRole('textbox');
+        await userEvent.type(inputField, 'some.domain');
+        const button = screen.getByRole('button');
+        await userEvent.click(button);
+
+        // assert
+        expect(screen.getByText(message)).toBeInTheDocument();
+      }
+    });
+  });
 });
