@@ -78,7 +78,7 @@ describe('DomainAvailabilityChecker page', () => {
         message: '90% RENEWAL DISCOUNT',
         code: 'RENEWAL_DISCOUNT_90',
       },
-    ])('displays %s when the discount code is %s', async ({ code, message }) => {
+    ])('displays $message when the discount code is $code', async ({ code, message }) => {
       {
         // arrange
         render(<DomainAvailabilityChecker />);

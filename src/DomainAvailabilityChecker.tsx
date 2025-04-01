@@ -28,7 +28,6 @@ export const DomainAvailabilityChecker = () => {
 
     const domainCheckResponse: DomainCheckResponse = await domainResponse.json();
     const checkResults = processDomainCheckResponse(domainCheckResponse);
-    console.log('checkResults:', checkResults);
     setCheckResult(checkResults);
   };
 
